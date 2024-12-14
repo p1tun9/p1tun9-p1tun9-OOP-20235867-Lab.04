@@ -1,0 +1,15 @@
+	1. Lớp nào nên implement giao diện Comparable?
+Lớp `Media` nên implement giao diện `Comparable<Media>`, vì tất cả các loại phương tiện như `Book`, `DigitalVideoDisc` và `CompactDisc` 
+đều kế thừa từ lớp này. Việc triển khai `Comparable` trong `Media` cho phép so sánh các đối tượng dựa trên các thuộc tính chung như `title` hoặc `cost`.
+
+	2. Cách triển khai phương thức compareTo() để phản ánh thứ tự sắp xếp mong muốn?
+Phương thức `compareTo()` trong `Media` nên so sánh các mục theo **title** (thứ tự bảng chữ cái) trước, sau đó theo **cost** (giảm dần) 
+nếu tiêu đề giống nhau. 
+
+	3. Có thể có hai quy tắc sắp xếp của mục (theo title rồi cost và theo cost rồi title) nếu sử dụng giao diện Comparable không?
+Không, giao diện `Comparable` chỉ hỗ trợ **một quy tắc sắp xếp tự nhiên**, được định nghĩa trong phương thức `compareTo()`. Nếu cần 
+nhiều quy tắc sắp xếp (ví dụ: theo title rồi cost và theo cost rồi title), cần sử dụng giao diện `Comparator`.
+
+	4. Nếu DVDs có quy tắc sắp xếp khác với các loại media khác (theo title, rồi length giảm dần, rồi cost), làm thế nào để thay đổi mã?
+Để hỗ trợ quy tắc sắp xếp riêng cho `DigitalVideoDisc`, có thể ghi đè phương thức `compareTo()` trong lớp `DigitalVideoDisc`. Điều này cho 
+phép DVDs được sắp xếp theo quy tắc riêng, trong khi các loại media khác vẫn sử dụng triển khai mặc định trong `Media`.
